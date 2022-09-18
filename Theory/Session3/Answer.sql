@@ -1,4 +1,5 @@
 CREATE DATABASE IntershipManagement
+GO
 USE InternshipManagement
 
 CREATE TABLE Student (
@@ -117,10 +118,13 @@ FROM Student_Project
 WHERE internplace = N'Long An'
 
 -- 11. Cho biết danh sách các sinh viên thực tập tại quê nhà
-SELECT * 
-FROM Student 
-WHERE country IN (SELECT DISTINCT internplace 
-                  FROM Student_Project)
+SELECT 
+  * 
+FROM 
+  Student s 
+  INNER JOIN Student_Project sp On s.ID = sp.studentID 
+WHERE 
+  s.country = sp.internPlace
 
 -- 12. Các đề tài không có sinh viên nào tham gia
 SELECT * 
@@ -130,18 +134,20 @@ WHERE id NOT IN (SELECT DISTINCT projectid
 
 -- 13. Danh sách các đề tài có sinh viên học giỏi nhất lớp tham gia
 SELECT * 
-FROM Student_Project 
-WHERE studentid IN (SELECT id 
+FROM Project 
+WHERE id IN (SELECT projectid
+             FROM Student_Project
+             WHERE studentID IN (
+                    SELECT id
                     FROM Student 
                     WHERE score = (SELECT MAX(score) 
-                                   FROM Student))
+                                   FROM Student)))
 
 
 -- 14. Điểm trung bình của sinh viên quê ở Hà Nội
-SELECT id, AVG(score) AS N'Điểm trung bình' 
+SELECT AVG(score) AS N'Điểm trung bình' 
 FROM Student 
 WHERE country = N'Hà Nội' 
-GROUP BY id
 
 -- 15. Các đề tài từ 2 sinh viên trở lên đăng ký tham gia.
 SELECT projectid, COUNT(projectid) 
@@ -157,8 +163,7 @@ WHERE id NOT IN (SELECT projectid
                  WHERE studentid IN (SELECT id 
                                      FROM Student 
                                      WHERE score = (SELECT MIN(score) 
-                                                    FROM Student))
-)
+                                                    FROM Student)))
 
 -- 17. Danh sách các sinh viên có điểm học tập cao hơn điểm thực tập trung bình của đề
 -- tài có mã số là 1

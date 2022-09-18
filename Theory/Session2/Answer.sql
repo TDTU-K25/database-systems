@@ -1,4 +1,5 @@
 CREATE DATABASE IntershipManagement
+GO
 USE InternshipManagement
 
 CREATE TABLE Student (
