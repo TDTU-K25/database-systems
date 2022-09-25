@@ -153,7 +153,7 @@ WHERE
 -- 2. Cho biết những sinh viên có học lực và kết quả thực tập giỏi nhất.
 CREATE VIEW VCau1_2 AS 
 SELECT 
-  s.* 
+  DISTINCT s.* 
 FROM 
   Student s 
   INNER JOIN Student_Project sp ON s.id = sp.studentid 
@@ -215,6 +215,44 @@ WHERE
         FROM 
           Student_Project
       )
+  )
+
+-- Tìm đề tài có điểm trung bình kết quả thực tập cao nhất
+SELECT 
+  TOP 1 projectID, 
+  AVG(result) 
+FROM 
+  Student_Project 
+GROUP BY 
+  projectID 
+ORDER BY 
+  AVG(result) DESC
+
+
+SELECT 
+  * 
+FROM 
+  Project 
+WHERE 
+  id IN (SELECT TOP 1 projectID
+         FROM Student_Project
+         GROUP BY projectID
+         ORDER BY AVG(result) DESC)
+
+SELECT 
+  * 
+FROM 
+  Project 
+WHERE 
+  id IN (
+    SELECT 
+      TOP 1 projectID 
+    FROM 
+      Student_Project 
+    GROUP BY 
+      projectID 
+    ORDER BY 
+      AVG(result) DESC
   )
 
 -- 5. Liệt kê những đề tài có kinh phí cao nhất nhưng không được những sinh viên giỏi
