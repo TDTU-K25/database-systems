@@ -1,0 +1,3 @@
+R1 A,B,C,D,G,H A,B_C;C_A;B,C_D;A,C,D_B;D_E,G;B,E_C;C,G_B,D;C,E_A,G
+R2 A,B,C,D,E,G A_B,C;B_D;A,D_E;C,D_A
+R3 A,B,C,D A_B;A,B_C;A_C,D

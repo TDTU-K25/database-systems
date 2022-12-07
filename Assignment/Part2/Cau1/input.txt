@@ -1,0 +1,14 @@
+Khoa MaKhoa,TenKhoa,Email,SDT MaKhoa
+Nganh MaNganh,TenNganh MaNganh
+GiangVien MaGV,HoTen,SDT,HocVi MaGV
+GiangVienThinhGiang TruongGiangDayChinh 
+SinhVien MaSV,HoTen,NgaySinh,SDT MaSV
+TaiKhoanThongTinSinhVien TaiKhoan,MatKhau TaiKhoan
+MonHoc MaMH,TenMH,TinChi MaMH
+Khoa-Nganh 1-N
+Khoa-GiangVien 1-N
+Nganh-MonHoc 1-N
+Nganh-SinhVien 1-N
+SinhVien-MonHoc N-N
+SinhVien-TaiKhoanThongTinSinhVien 1-1
+GiangVien-GiangVienThinhGiang Inheritance

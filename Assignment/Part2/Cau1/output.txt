@@ -1,0 +1,16 @@
+Khoa(MaKhoa,TenKhoa,Email,SDT) PK: MaKhoa FK: 
+Nganh(MaNganh,TenNganh,MaKhoa) PK: MaNganh FK: MaKhoa
+GiangVien(MaGV,HoTen,SDT,HocVi,MaKhoa) PK: MaGV FK: MaKhoa
+MonHoc(MaMH,TenMH,TinChi,MaNganh) PK: MaMH FK: MaNganh
+SinhVien(MaSV,HoTen,NgaySinh,SDT,MaNganh) PK: MaSV FK: MaNganh
+KetQua(MaSV,MaMH,Diem) PK: MaSV,MaMH FK: MaSV,MaMH
+TaiKhoanThongTinSinhVien(TaiKhoan,MatKhau,MaSV) PK: TaiKhoan FK: MaSV
+GiangVienThinhGiang(TruongGiangDayChinh,MaGV) PK: MaGV FK: MaGV
+Khoa-Nganh: 1-N
+Khoa-GiangVien: 1-N
+Nganh-MonHoc: 1-N
+Nganh-SinhVien: 1-N
+SinhVien-TaiKhoanThongTinSinhVien: 1-1
+GiangVien-GiangVienThinhGiang: Inheritance
+SinhVien-KetQua: 1-N
+MonHoc-KetQua: 1-N
